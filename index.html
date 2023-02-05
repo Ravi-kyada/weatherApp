@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WEATHER APP</title>
+    <script
+      src="https://kit.fontawesome.com/5e84a875e4.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="box">
+      <div class="wave-one"></div>
+      <div class="wave-two"></div>
+      <div class="wave-three"></div>
+
+      <div id="weathercon">
+        <i class="fa-solid fa-sun" style="color: #eccc68"></i>
+      </div>
+      <div class="info">
+        <h2 class="location">
+          <i class="fa-solid fa-street-view"></i>{%location%},{%country%}
+        </h2>
+        <p id="date">WED |OCT 31 | 10:25AM</p>
+        <h1 class="temp">{%temp%}</h1>
+        <h3 class="tempmin_max">MIN {%tempmin%} | MAX {%tempmax%}</h3>
+      </div>
+    </div>
+  </body>
+  <script>
+    const date = document.getElementById("date");
+    const weather = document.getElementById("weathercon");
+
+    const curTime = () => {
+      const allmonth = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+
+      var weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const curTime = new Date();
+      var Day = weekday[curTime.getDay()];
+      var month = allmonth[curTime.getMonth()];
+      var date = curTime.getDate();
+      let hours = curTime.getHours();
+      let min = curTime.getMinutes();
+
+      let perios = "AM";
+
+      if (hours > 11) {
+        perios = "PM";
+        if (hours > 12) hours -= 12;
+      }
+      if (min < 10) {
+        min = "0" + min;
+      }
+
+      return `${Day} | ${month} ${date} | ${hours}:${min}${perios}`;
+    };
+    date.innerHTML = curTime();
+  </script>
+</html>
